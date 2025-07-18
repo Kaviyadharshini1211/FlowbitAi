@@ -1,0 +1,20 @@
+[
+  {
+    "tenant": "LogisticsCo",
+    "screens": [
+      {
+        "name": "Support Tickets",
+        "url": "http://localhost:3002/remoteEntry.js"
+      }
+    ]
+  },
+  {
+    "tenant": "RetailGmbH",
+    "screens": [
+      {
+        "name": "Retail Dashboard",
+        "url": "http://localhost:3002/remoteEntry.js"
+      }
+    ]
+  }
+]
