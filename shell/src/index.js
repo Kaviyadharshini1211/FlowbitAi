@@ -1,0 +1,3 @@
+
+import('./bootstrap'); // <-- defer loading
+

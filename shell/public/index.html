@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flowbit Shell</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script>
+  window.loadRemoteModule = async ({ url, scope = 'default', module = './App' }) => {
+    // Avoid loading same script multiple times
+    if (!window.__remote_scripts__) window.__remote_scripts__ = new Set();
+    if (!window.__remote_scripts__.has(url)) {
+      await new Promise((resolve, reject) => {
+        const script = document.createElement('script');
+        script.src = url;
+        script.type = 'text/javascript';
+        script.async = true;
+        script.onload = resolve;
+        script.onerror = reject;
+        document.head.appendChild(script);
+      });
+      window.__remote_scripts__.add(url);
+    }
+
+    await __webpack_init_sharing__('default');
+    const container = window[scope];
+    await container.init(__webpack_share_scopes__.default);
+    const factory = await container.get(module);
+    return factory();
+  };
+</script>
+
+  </body>
+</html>
